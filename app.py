@@ -6,8 +6,8 @@ app = Flask(__name__)
 api = Api(app)
 
 
-api.add_resource(Playstation, '/playstation')
-api.add_resource(Xbox, '/xbox')
+api.add_resource(Playstation, '/games/playstation')
+api.add_resource(Xbox, '/games/xbox')
 api.add_resource(AllGames, '/games')
 api.add_resource(GamesId, '/games/<string:plataform>/<int:game_id>')
 
