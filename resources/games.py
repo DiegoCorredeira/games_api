@@ -104,15 +104,10 @@ class GamesId(Resource):
     keys_args.add_argument('year', type=str, help='Year of the game')
     
     def get(self,plataform, game_id):
-        games = None
-        if plataform == 'playstation':
-            games = playstation_games
-        elif plataform == 'xbox':
-            games = xbox_games
-        if games:
-            for game in games:
-                if game['id'] == game_id:
-                    return game, 200
+        games = playstation_games if plataform == 'playstation' else xbox_games
+        game = next((game for game in games if game['id'] == game_id), None)
+        if game:
+            return game, 200
         return {'Game': None}, 404
      
     def post(self, plataform, game_id):
