@@ -1,5 +1,7 @@
+from hmac import new
 from flask import json
 from flask_restful import Resource, reqparse
+from models.games import GamesModel
 
 
 playstation_games = [
@@ -113,3 +115,11 @@ class GamesId(Resource):
                     return game, 200
         return {'Game': None}, 404
      
+    def post(self, plataform, game_id):
+        args = GamesId.keys_args.parse_args()
+        game = GamesModel(game_id, args['name'], args['genre'], args['plataform'], args['year'])
+        if plataform == 'playstation':
+            playstation_games.append(game.json())
+        elif plataform == 'xbox':
+            xbox_games.append(game.json())
+        return game.json(), 201
