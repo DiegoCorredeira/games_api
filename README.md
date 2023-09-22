@@ -1,1 +1,1 @@
-# Games API - Xbox e Playstatio
+# Games API - Xbox e Playstation
